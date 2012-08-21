@@ -29,13 +29,13 @@ my %WriteMakefileArgs = (
   "PREREQ_PM" => {
     "Carp" => 0,
     "HTTP::Cookies" => 0,
-    "Moo" => 0,
+    "Moo" => "1.000003",
     "Safe::Isa" => 0,
     "Scalar::Util" => 0,
     "strict" => 0,
     "warnings" => 0
   },
-  "VERSION" => "0.01",
+  "VERSION" => "0.02",
   "test" => {
     "TESTS" => "t/*.t t/cookie/*.t"
   }

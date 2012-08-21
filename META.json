@@ -29,7 +29,7 @@
          "requires" : {
             "Carp" : "0",
             "HTTP::Cookies" : "0",
-            "Moo" : "0",
+            "Moo" : "1.000003",
             "Safe::Isa" : "0",
             "Scalar::Util" : "0",
             "strict" : "0",
@@ -57,6 +57,6 @@
          "web" : "https://github.com/oalders/http-cookiemonster"
       }
    },
-   "version" : "0.01"
+   "version" : "0.02"
 }
 

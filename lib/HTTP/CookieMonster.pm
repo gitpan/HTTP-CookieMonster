@@ -3,7 +3,7 @@ use warnings;
 
 package HTTP::CookieMonster;
 {
-  $HTTP::CookieMonster::VERSION = '0.01';
+  $HTTP::CookieMonster::VERSION = '0.02';
 }
 
 use Moo;
@@ -40,10 +40,6 @@ sub _build_all_cookies {
 
     return \@_cookies;
 
-}
-
-sub _set_all_cookies {
-    return shift->_build_all_cookies;
 }
 
 sub get_cookie {
@@ -122,7 +118,7 @@ HTTP::CookieMonster - Easy read/write access to your jar of HTTP::Cookies
 
 =head1 VERSION
 
-version 0.01
+version 0.02
 
 =head1 SYNOPSIS
 
@@ -141,9 +137,10 @@ version 0.01
 Warning: this is BETA code which is still subject to change.
 
 This module was created because messing around with L<HTTP::Cookies> is
-non-trivial.  It's a very useful code, but using it is not always as easy and
-clean as it could be. For instance, instead of returning you a list of cookies,
-you have to use a callback:
+non-trivial.  L<HTTP::Cookies> a very useful module, but using it is not always
+as easy and clean as it could be. For instance, if you want to find a
+particular cookie, you can just ask for it by name.  Instead, you have to use a
+callback:
 
     $cookie_jar->scan( \&callback )
 
@@ -175,8 +172,8 @@ the correct order etc.
 HTTP::CookieMonster gives you a simple interface for getting and setting
 cookies. You can fetch an ArrayRef of all your cookies:
 
-    my @cookies = $monster->all_cookies;
-    foreach my $cookie ( @cookies ) {
+    my $all_cookies = $monster->all_cookies;
+    foreach my $cookie ( @{ $all_cookies } ) {
         print $cookie->key;
         print $cookie->value;
         print $cookie->secure;
@@ -236,7 +233,7 @@ L<HTTP::CookieMonster::Cookie> objects.
 
 =head2 set_cookie( $cookie )
 
-Sets a cookie (updates the cookie jar).  Requires a
+Sets a cookie and updates the cookie jar.  Requires a
 L<HTTP::CookieMonster::Cookie> object.
 
     my $monster = HTTP::CookieMonster->new( cookie_jar => $mech->cookie_jar );
@@ -276,10 +273,10 @@ list context:
     $monster = HTTP::CookieMonster->new( cookie_jar => $mech->cookie_jar );
 
     # first cookie with this name
-    my $first_session = $monster->feeling_lucky('session');
+    my $first_session = $monster->get_cookie('session');
 
     # all cookies with this name
-    my @all_sessions = $monster->get_cookie('session');
+    my @all_sessions  = $monster->get_cookie('session');
 
 =head1 AUTHOR
 

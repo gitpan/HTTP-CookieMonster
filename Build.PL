@@ -22,7 +22,7 @@ my %module_build_args = (
     "Olaf Alders <olaf\@wundercounter.com>"
   ],
   "dist_name" => "HTTP-CookieMonster",
-  "dist_version" => "0.01",
+  "dist_version" => "0.02",
   "license" => "perl",
   "module_name" => "HTTP::CookieMonster",
   "recommends" => {},
@@ -30,7 +30,7 @@ my %module_build_args = (
   "requires" => {
     "Carp" => 0,
     "HTTP::Cookies" => 0,
-    "Moo" => 0,
+    "Moo" => "1.000003",
     "Safe::Isa" => 0,
     "Scalar::Util" => 0,
     "strict" => 0,
