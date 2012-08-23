@@ -3,7 +3,7 @@ use warnings;
 
 package HTTP::CookieMonster::Cookie;
 {
-  $HTTP::CookieMonster::Cookie::VERSION = '0.02';
+  $HTTP::CookieMonster::Cookie::VERSION = '0.03';
 }
 
 use Moo;
@@ -36,7 +36,7 @@ HTTP::CookieMonster::Cookie - Cookie representation used by HTTP::CookieMonster
 
 =head1 VERSION
 
-version 0.02
+version 0.03
 
 =head1 SYNOPSIS
 
@@ -121,7 +121,7 @@ The value of the cookie.
 
 =head2 discard
 
-=head3 hash
+=head2 hash
 
     $cookie->hash( { HttpOnly => undef } );
 

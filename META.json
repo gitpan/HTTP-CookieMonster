@@ -47,6 +47,8 @@
    },
    "release_status" : "stable",
    "resources" : {
+      "X_prepan_author" : "http://prepan.org/user/3Yz7PYrBzQ",
+      "X_prepan_module" : "http://prepan.org/module/429En4oFdi",
       "bugtracker" : {
          "web" : "http://github.com/oalders/HTTP-CookieMonster/issues"
       },
@@ -57,6 +59,6 @@
          "web" : "https://github.com/oalders/http-cookiemonster"
       }
    },
-   "version" : "0.02"
+   "version" : "0.03"
 }
 
