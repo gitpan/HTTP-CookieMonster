@@ -13,4 +13,5 @@ t/author-critic.t
 t/cookie/load.t
 t/cookie_jar.txt
 t/load.t
+t/procedural.t
 t/release-pod-coverage.t

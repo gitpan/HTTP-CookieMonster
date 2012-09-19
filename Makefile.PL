@@ -16,7 +16,8 @@ my %WriteMakefileArgs = (
     "Data::Serializer" => 0,
     "English" => 0,
     "Module::Build" => "0.3601",
-    "Test::More" => 0
+    "Test::More" => 0,
+    "Test::Most" => 0
   },
   "CONFIGURE_REQUIRES" => {
     "ExtUtils::MakeMaker" => "6.30",
@@ -32,10 +33,11 @@ my %WriteMakefileArgs = (
     "Moo" => "1.000003",
     "Safe::Isa" => 0,
     "Scalar::Util" => 0,
+    "Sub::Exporter" => 0,
     "strict" => 0,
     "warnings" => 0
   },
-  "VERSION" => "0.03",
+  "VERSION" => "0.04",
   "test" => {
     "TESTS" => "t/*.t t/cookie/*.t"
   }

@@ -11,7 +11,8 @@ my %module_build_args = (
     "Data::Serializer" => 0,
     "English" => 0,
     "Module::Build" => "0.3601",
-    "Test::More" => 0
+    "Test::More" => 0,
+    "Test::Most" => 0
   },
   "configure_requires" => {
     "ExtUtils::MakeMaker" => "6.30",
@@ -22,7 +23,7 @@ my %module_build_args = (
     "Olaf Alders <olaf\@wundercounter.com>"
   ],
   "dist_name" => "HTTP-CookieMonster",
-  "dist_version" => "0.03",
+  "dist_version" => "0.04",
   "license" => "perl",
   "module_name" => "HTTP::CookieMonster",
   "recommends" => {},
@@ -33,6 +34,7 @@ my %module_build_args = (
     "Moo" => "1.000003",
     "Safe::Isa" => 0,
     "Scalar::Util" => 0,
+    "Sub::Exporter" => 0,
     "strict" => 0,
     "warnings" => 0
   },

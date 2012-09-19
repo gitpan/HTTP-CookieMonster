@@ -32,6 +32,7 @@
             "Moo" : "1.000003",
             "Safe::Isa" : "0",
             "Scalar::Util" : "0",
+            "Sub::Exporter" : "0",
             "strict" : "0",
             "warnings" : "0"
          }
@@ -41,14 +42,13 @@
             "Data::Printer" : "0",
             "Data::Serializer" : "0",
             "English" : "0",
-            "Test::More" : "0"
+            "Test::More" : "0",
+            "Test::Most" : "0"
          }
       }
    },
    "release_status" : "stable",
    "resources" : {
-      "X_prepan_author" : "http://prepan.org/user/3Yz7PYrBzQ",
-      "X_prepan_module" : "http://prepan.org/module/429En4oFdi",
       "bugtracker" : {
          "web" : "http://github.com/oalders/HTTP-CookieMonster/issues"
       },
@@ -57,8 +57,10 @@
          "type" : "git",
          "url" : "https://github.com/oalders/http-cookiemonster.git",
          "web" : "https://github.com/oalders/http-cookiemonster"
-      }
+      },
+      "x_prepan_author" : "http://prepan.org/user/3Yz7PYrBzQ",
+      "x_prepan_module" : "http://prepan.org/module/429En4oFdi"
    },
-   "version" : "0.03"
+   "version" : "0.04"
 }
 

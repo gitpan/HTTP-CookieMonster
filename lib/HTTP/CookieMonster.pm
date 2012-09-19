@@ -3,7 +3,7 @@ use warnings;
 
 package HTTP::CookieMonster;
 {
-  $HTTP::CookieMonster::VERSION = '0.03';
+  $HTTP::CookieMonster::VERSION = '0.04';
 }
 
 use Moo;
@@ -12,6 +12,7 @@ use HTTP::Cookies;
 use HTTP::CookieMonster::Cookie;
 use Safe::Isa;
 use Scalar::Util qw( reftype );
+use Sub::Exporter -setup => { exports => ['cookies'] };
 
 my @_cookies = ();
 
@@ -24,6 +25,13 @@ has 'cookie_jar' => (
         }
 
 );
+
+sub BUILDARGS {
+    my ( $class, @args ) = @_;
+
+    return { cookie_jar => shift @args } if @args == 1;
+    return {@args};
+}
 
 # all_cookies() is now a straight method rather than a Moo accessor in order to
 # prevent the all_cookies list from getting out of sync with changes to the
@@ -38,6 +46,31 @@ sub all_cookies {
     $self->cookie_jar->scan( \&_check_cookies );
 
     wantarray ? return @_cookies : return \@_cookies;
+
+}
+
+
+# my $cookie = cookies( $jar ); -- first cookie (makes no sense)
+# my $session = cookies( $jar, 'session' );
+# my @cookies = cookies( $jar );
+# my @sessions = cookies( $jar, 'session' );
+
+sub cookies {
+
+    my ( $cookie_jar, $name ) = @_;
+    die "This function is not part of the OO interface"
+        if $cookie_jar->$_isa( 'HTTP::CookieMonster' );
+
+    my $monster = HTTP::CookieMonster->new( $cookie_jar );
+
+    if ( !$name ) {
+        if ( !wantarray ) {
+            croak "Please specify a cookie name when asking for a single cookie";
+        }
+        return @{ $monster->all_cookies };
+    }
+
+    return $monster->get_cookie( $name );
 
 }
 
@@ -114,19 +147,35 @@ HTTP::CookieMonster - Easy read/write access to your jar of HTTP::Cookies
 
 =head1 VERSION
 
-version 0.03
+version 0.04
 
 =head1 SYNOPSIS
 
-    use HTTP::CookieMonster;
+    # Use the functional interface for quick read-only access
+    use HTTP::CookieMonster qw( 'cookies' );
     use WWW::Mechanize;
 
     my $mech = WWW::Mechanize->new;
-    $mech->get( 'http://www.nytimes.com' );
+    my $url = 'http://www.nytimes.com';
+    $mech->get( $url );
 
-    my $monster = HTTP::CookieMonster->new( cookie_jar => $mech->cookie_jar );
+    my @cookies = cookies( $mech->cookie_jar );
+    my $cookie  = cookies( $mech->cookie_jar, 'RMID' );
+    print $cookie->val;
+
+    # Use the OO interface for read/write access
+
+    use HTTP::CookieMonster;
+
+    my $monster = HTTP::CookieMonster->new( $mech->cookie_jar );
     my $cookie = $monster->get_cookie('RMID');
     print $cookie->val;
+
+    $cookie->val('random stuff');
+    $monster->set_cookie( $cookie );
+
+    # now fetch page using mangled cookie
+    $mech->get( $url );
 
 =head1 DESCRIPTION
 
@@ -216,7 +265,7 @@ Or, add an entirely new cookie to the jar:
 new() takes just one required parameter, which is cookie_jar, a valid
 L<HTTP::Cookies> object.
 
-    my $monster = HTTP::CookieMonster->new( cookie_jar => $mech->cookie_jar );
+    my $monster = HTTP::CookieMonster->new( $mech->cookie_jar );
 
 =head2 cookie_jar
 
@@ -237,7 +286,7 @@ L<HTTP::CookieMonster::Cookie> objects.
 Sets a cookie and updates the cookie jar.  Requires a
 L<HTTP::CookieMonster::Cookie> object.
 
-    my $monster = HTTP::CookieMonster->new( cookie_jar => $mech->cookie_jar );
+    my $monster = HTTP::CookieMonster->new( $mech->cookie_jar );
     my $s = $monster->get_cookie('session');
     $s->val('random_string');
 
@@ -271,13 +320,32 @@ In this case asking for get_cookie('session') in scalar context may not return
 the cookie which you were expecting.  You will be safer calling get_cookie() in
 list context:
 
-    $monster = HTTP::CookieMonster->new( cookie_jar => $mech->cookie_jar );
+    $monster = HTTP::CookieMonster->new( $mech->cookie_jar );
 
     # first cookie with this name
     my $first_session = $monster->get_cookie('session');
 
     # all cookies with this name
     my @all_sessions  = $monster->get_cookie('session');
+
+=head1 FUNCTIONAL/PROCEDURAL INTERFACE
+
+=head2 cookies
+
+This function will DWIM.  Here are some examples:
+
+    use HTTP::CookieMonster qw( cookies );
+
+    # get all cookies in your jar
+    my @cookies = cookies( $mech->cookie_jar );
+
+    # get all cookies of a certain name/key
+    my @session_cookies = cookies( $mech->cookie_jar, 'session_cookie_name' );
+
+    # get the first cookie of a certain name/key
+    my $first_session_cookie = cookies( $mech->cookie_jar, 'session_cookie_name' );
+
+=for Pod::Coverage BUILDARGS
 
 =head1 AUTHOR
 
