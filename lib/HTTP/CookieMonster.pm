@@ -3,7 +3,7 @@ use warnings;
 
 package HTTP::CookieMonster;
 {
-  $HTTP::CookieMonster::VERSION = '0.04';
+  $HTTP::CookieMonster::VERSION = '0.05';
 }
 
 use Moo;
@@ -147,12 +147,12 @@ HTTP::CookieMonster - Easy read/write access to your jar of HTTP::Cookies
 
 =head1 VERSION
 
-version 0.04
+version 0.05
 
 =head1 SYNOPSIS
 
     # Use the functional interface for quick read-only access
-    use HTTP::CookieMonster qw( 'cookies' );
+    use HTTP::CookieMonster qw( cookies );
     use WWW::Mechanize;
 
     my $mech = WWW::Mechanize->new;
