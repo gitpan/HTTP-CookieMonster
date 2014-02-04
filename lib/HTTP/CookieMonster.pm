@@ -2,10 +2,7 @@ use strict;
 use warnings;
 
 package HTTP::CookieMonster;
-{
-  $HTTP::CookieMonster::VERSION = '0.05';
-}
-
+$HTTP::CookieMonster::VERSION = '0.06';
 use Moo;
 use Carp qw( croak );
 use HTTP::Cookies;
@@ -110,6 +107,22 @@ sub set_cookie {
 
 }
 
+sub delete_cookie {
+
+    my $self   = shift;
+    my $cookie = shift;
+
+    if ( !$cookie->$_isa( 'HTTP::CookieMonster::Cookie' ) ) {
+        croak "$cookie is not a HTTP::CookieMonster::Cookie object";
+    }
+
+    $cookie->expires( -1 );
+
+    return $self->set_cookie( $cookie );
+
+}
+
+
 sub _check_cookies {
 
     my @args = @_;
@@ -137,9 +150,11 @@ sub _check_cookies {
 # ABSTRACT: Easy read/write access to your jar of HTTP::Cookies
 #
 
-
 __END__
+
 =pod
+
+=encoding UTF-8
 
 =head1 NAME
 
@@ -147,7 +162,7 @@ HTTP::CookieMonster - Easy read/write access to your jar of HTTP::Cookies
 
 =head1 VERSION
 
-version 0.05
+version 0.06
 
 =head1 SYNOPSIS
 
@@ -184,8 +199,8 @@ Warning: this is BETA code which is still subject to change.
 This module was created because messing around with L<HTTP::Cookies> is
 non-trivial.  L<HTTP::Cookies> a very useful module, but using it is not always
 as easy and clean as it could be. For instance, if you want to find a
-particular cookie, you can just ask for it by name.  Instead, you have to use a
-callback:
+particular cookie, you can't just ask for it by name.  Instead, you have to use
+a callback:
 
     $cookie_jar->scan( \&callback )
 
@@ -233,7 +248,7 @@ fetch a cookie by name.
 
 This gives you fast access to a cookie without a callback, iterating over a
 list etc. It's good for quick hacks and you can dump the cookie quite easily to
-inspect it's contents in a highly readable way:
+inspect its contents in a highly readable way:
 
     use Data::Printer;
     p $cookie;
@@ -307,6 +322,11 @@ L<HTTP::CookieMonster::Cookie> object.
 
     $monster->set_cookie( $cookie );
 
+=head2 delete_cookie( $cookie )
+
+Deletes a cookie and updates the cookie jar.  Requires a
+L<HTTP::CookieMonster::Cookie> object.
+
 =head2 get_cookie( $name )
 
 Be aware that this method may surprise you by what it returns.  When called in
@@ -359,4 +379,3 @@ This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.
 
 =cut
-

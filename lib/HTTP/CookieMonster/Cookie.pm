@@ -2,10 +2,7 @@ use strict;
 use warnings;
 
 package HTTP::CookieMonster::Cookie;
-{
-  $HTTP::CookieMonster::Cookie::VERSION = '0.05';
-}
-
+$HTTP::CookieMonster::Cookie::VERSION = '0.06';
 use Moo;
 
 # in order of args required in $cookie_jar->scan callback
@@ -26,9 +23,11 @@ has 'hash'      => ( is => 'rw', );
 
 # ABSTRACT: Cookie representation used by HTTP::CookieMonster
 
-
 __END__
+
 =pod
+
+=encoding UTF-8
 
 =head1 NAME
 
@@ -36,7 +35,7 @@ HTTP::CookieMonster::Cookie - Cookie representation used by HTTP::CookieMonster
 
 =head1 VERSION
 
-version 0.05
+version 0.06
 
 =head1 SYNOPSIS
 
@@ -137,4 +136,3 @@ This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.
 
 =cut
-
