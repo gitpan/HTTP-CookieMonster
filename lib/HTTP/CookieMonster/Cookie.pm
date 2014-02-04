@@ -2,7 +2,7 @@ use strict;
 use warnings;
 
 package HTTP::CookieMonster::Cookie;
-$HTTP::CookieMonster::Cookie::VERSION = '0.06';
+$HTTP::CookieMonster::Cookie::VERSION = '0.07';
 use Moo;
 
 # in order of args required in $cookie_jar->scan callback
@@ -35,7 +35,7 @@ HTTP::CookieMonster::Cookie - Cookie representation used by HTTP::CookieMonster
 
 =head1 VERSION
 
-version 0.06
+version 0.07
 
 =head1 SYNOPSIS
 

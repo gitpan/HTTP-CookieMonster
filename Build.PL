@@ -19,7 +19,7 @@ my %module_build_args = (
     "Olaf Alders <olaf\@wundercounter.com>"
   ],
   "dist_name" => "HTTP-CookieMonster",
-  "dist_version" => "0.06",
+  "dist_version" => "0.07",
   "license" => "perl",
   "module_name" => "HTTP::CookieMonster",
   "recommends" => {},

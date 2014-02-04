@@ -2,7 +2,7 @@ use strict;
 use warnings;
 
 package HTTP::CookieMonster;
-$HTTP::CookieMonster::VERSION = '0.06';
+$HTTP::CookieMonster::VERSION = '0.07';
 use Moo;
 use Carp qw( croak );
 use HTTP::Cookies;
@@ -162,7 +162,7 @@ HTTP::CookieMonster - Easy read/write access to your jar of HTTP::Cookies
 
 =head1 VERSION
 
-version 0.06
+version 0.07
 
 =head1 SYNOPSIS
 
