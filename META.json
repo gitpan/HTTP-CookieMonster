@@ -4,7 +4,7 @@
       "Olaf Alders <olaf@wundercounter.com>"
    ],
    "dynamic_config" : 0,
-   "generated_by" : "Dist::Zilla version 5.012, CPAN::Meta::Converter version 2.133380",
+   "generated_by" : "Dist::Zilla version 5.021, CPAN::Meta::Converter version 2.142060",
    "license" : [
       "perl_5"
    ],
@@ -16,13 +16,13 @@
    "prereqs" : {
       "build" : {
          "requires" : {
-            "Module::Build" : "0.3601"
+            "Module::Build" : "0.28"
          }
       },
       "configure" : {
          "requires" : {
-            "ExtUtils::MakeMaker" : "6.30",
-            "Module::Build" : "0.3601"
+            "ExtUtils::MakeMaker" : "0",
+            "Module::Build" : "0.28"
          }
       },
       "develop" : {
@@ -39,6 +39,8 @@
             "Safe::Isa" : "0",
             "Scalar::Util" : "0",
             "Sub::Exporter" : "0",
+            "URI::Escape" : "0",
+            "perl" : "5.006",
             "strict" : "0",
             "warnings" : "0"
          }
@@ -65,6 +67,6 @@
       "x_prepan_author" : "http://prepan.org/user/3Yz7PYrBzQ",
       "x_prepan_module" : "http://prepan.org/module/429En4oFdi"
    },
-   "version" : "0.07"
+   "version" : "0.08"
 }
 
