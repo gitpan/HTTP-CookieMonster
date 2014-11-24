@@ -9,7 +9,6 @@ META.yml
 Makefile.PL
 README
 cpanfile
-cpanfile.snapshot
 dist.ini
 examples/read_cookies.pl
 lib/HTTP/CookieMonster.pm

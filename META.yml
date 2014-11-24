@@ -34,4 +34,4 @@ resources:
   bugtracker: http://github.com/oalders/HTTP-CookieMonster/issues
   homepage: https://github.com/oalders/http-cookiemonster
   repository: https://github.com/oalders/http-cookiemonster.git
-version: '0.08'
+version: '0.09'

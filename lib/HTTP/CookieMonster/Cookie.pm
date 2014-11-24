@@ -2,7 +2,7 @@ use strict;
 use warnings;
 
 package HTTP::CookieMonster::Cookie;
-$HTTP::CookieMonster::Cookie::VERSION = '0.08';
+$HTTP::CookieMonster::Cookie::VERSION = '0.09';
 use Moo;
 
 # in order of args required in $cookie_jar->scan callback
@@ -35,7 +35,7 @@ HTTP::CookieMonster::Cookie - Cookie representation used by HTTP::CookieMonster
 
 =head1 VERSION
 
-version 0.08
+version 0.09
 
 =head1 SYNOPSIS
 
@@ -94,7 +94,7 @@ The name of the cookie.
 
 The value of the cookie.
 
-    $cookie->value( "random_stuff" );
+    $cookie->val( "random_stuff" );
 
 If you are creating a new cookie, you should escape the value first.
 

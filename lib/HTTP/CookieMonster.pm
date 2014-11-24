@@ -2,8 +2,8 @@ use strict;
 use warnings;
 
 package HTTP::CookieMonster;
-$HTTP::CookieMonster::VERSION = '0.08';
-$HTTP::CookieMonster::VERSION = '0.08';
+$HTTP::CookieMonster::VERSION = '0.09';
+$HTTP::CookieMonster::VERSION = '0.09';
 
 use 5.006;
 
@@ -156,7 +156,7 @@ HTTP::CookieMonster - Easy read/write access to your jar of HTTP::Cookies
 
 =head1 VERSION
 
-version 0.08
+version 0.09
 
 =head1 SYNOPSIS
 
@@ -187,8 +187,6 @@ version 0.08
     $mech->get( $url );
 
 =head1 DESCRIPTION
-
-Warning: this is BETA code which is still subject to change.
 
 This module was created because messing around with L<HTTP::Cookies> is
 non-trivial.  L<HTTP::Cookies> a very useful module, but using it is not always
@@ -229,7 +227,7 @@ cookies. You can fetch an ARRAY of all your cookies:
     my @all_cookies = $monster->all_cookies;
     foreach my $cookie ( @all_cookies ) {
         print $cookie->key;
-        print $cookie->value;
+        print $cookie->val;
         print $cookie->secure;
         print $cookie->domain;
         # etc
@@ -256,7 +254,7 @@ If you want to mangle the cookie before the next request, that's easy too.
 Or, add an entirely new cookie to the jar:
 
     use HTTP::CookieMonster::Cookie;
-    my $cookie = HTTP::CookieMonster::Cookie->new
+    my $cookie = HTTP::CookieMonster::Cookie->new(
         key       => 'cookie-name',
         val       => 'cookie-val',
         path      => '/',
